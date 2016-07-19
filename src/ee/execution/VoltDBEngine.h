@@ -480,7 +480,9 @@ class __attribute__((visibility("default"))) VoltDBEngine {
         int64_t m_siteId;
         int32_t m_partitionId;
         int32_t m_clusterIndex;
+    public:
         boost::scoped_ptr<TheHashinator> m_hashinator;
+    private:
         size_t m_startOfResultBuffer;
         int64_t m_tempTableMemoryLimit;
 
