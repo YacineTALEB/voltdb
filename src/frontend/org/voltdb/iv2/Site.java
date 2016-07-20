@@ -1070,7 +1070,10 @@ public class Site implements Runnable, SiteProcedureConnection, SiteSnapshotConn
         //Any new txnid will create a new undo quantum, including the same txnid again
         m_latestUndoTxnId = Long.MIN_VALUE;
         //If the begin undo token is not set the txn never did any work so there is nothing to undo/release
-        if (beginUndoToken == Site.kInvalidUndoToken) return;
+        if (beginUndoToken == Site.kInvalidUndoToken) {
+            drLog.info("SP site P" + m_partitionId + " kInvalidUndoToken found, nothing called");
+            return;
+        }
         if (rollback) {
             //drLog.info("SP site P" + m_partitionId + " EE undoUndoToken called");
             m_ee.undoUndoToken(beginUndoToken);
