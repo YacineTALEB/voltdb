@@ -1084,6 +1084,9 @@ public class Site implements Runnable, SiteProcedureConnection, SiteSnapshotConn
             if (m_latestUndoToken > beginUndoToken) {
                 //drLog.info("SP site P" + m_partitionId + " EE releaseUndoToken called");
                 m_ee.releaseUndoToken(m_latestUndoToken);
+            } else {
+                System.out.println("SP site P" + m_partitionId + " EE releaseUndoToken not called, m_latestUndoToken is " +
+                m_latestUndoToken + " smaller or equal to beginUndoToken " + beginUndoToken);
             }
         }
 
@@ -1383,6 +1386,7 @@ public class Site implements Runnable, SiteProcedureConnection, SiteSnapshotConn
     {
         //drLog.info("SP site P" + m_partitionId + " EE executePlanFragments called with txnId " + txnId + " spHandle " + spHandle +
         //              " lastCommittedSpHandle " + m_lastCommittedSpHandle + " uniqueId " + uniqueId);
+        System.out.println("SP site P" + m_partitionId + " EE executePlanFragments called with uniqueId " + uniqueId + " readOnly " + readOnly);
         return m_ee.executePlanFragments(
                 numFragmentIds,
                 planFragmentIds,
