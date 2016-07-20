@@ -1071,7 +1071,7 @@ public class Site implements Runnable, SiteProcedureConnection, SiteSnapshotConn
         m_latestUndoTxnId = Long.MIN_VALUE;
         //If the begin undo token is not set the txn never did any work so there is nothing to undo/release
         if (beginUndoToken == Site.kInvalidUndoToken) {
-            drLog.info("SP site P" + m_partitionId + " kInvalidUndoToken found, nothing called");
+            System.out.println("SP site P" + m_partitionId + " kInvalidUndoToken found, nothing called");
             return;
         }
         if (rollback) {
